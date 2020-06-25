@@ -21,7 +21,8 @@ public class SnakeHead {
 
     public void paint(Graphics2D g) {
         g.setColor(Color.GREEN);
-        g.fillRect(this.x*App.COMPONENT_SIZE, this.y*App.COMPONENT_SIZE, App.COMPONENT_SIZE, App.COMPONENT_SIZE); 
+        g.fillRect(this.x*App.COMPONENT_SIZE, this.y*App.COMPONENT_SIZE, App.COMPONENT_SIZE, App.COMPONENT_SIZE);
+        next.paint(g);
     }
 
     public void move(int dx, int dy) {
@@ -39,5 +40,13 @@ public class SnakeHead {
     public int size() {
         return next.size() + 1;
     }
-    
+
+    @Override
+    public String toString() {
+        return "SnakeHead{" +
+                "x=" + x +
+                ", y=" + y +
+                ", size=" + size() +
+                '}';
+    }
 }

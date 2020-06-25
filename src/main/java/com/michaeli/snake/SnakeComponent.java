@@ -3,7 +3,7 @@ package com.michaeli.snake;
 import java.awt.Graphics2D;
 
 public abstract class SnakeComponent {
-    int x, y;
+    int x=-2, y=-2;
     SnakeComponent next;
 
     public int getX() {
