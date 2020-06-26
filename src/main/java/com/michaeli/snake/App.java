@@ -39,7 +39,7 @@ public class App extends JFrame {
     public void setup() {
         setTitle("Snake");
         setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setVisible(true);
     }
