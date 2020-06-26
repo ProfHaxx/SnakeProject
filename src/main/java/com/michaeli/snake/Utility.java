@@ -1,4 +1,4 @@
-package com.michaeli.snake;
+package src.main.java.com.michaeli.snake;
 
 public class Utility {
     public static void sleep(long ms) { 

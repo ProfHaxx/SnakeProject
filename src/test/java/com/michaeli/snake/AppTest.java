@@ -1,4 +1,4 @@
-package com.michaeli.snake;
+package src.test.java.com.michaeli.snake;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.michaeli.snake;
+package src.main.java.com.michaeli.snake;
 
 import java.awt.Graphics2D;
 import java.awt.Color;

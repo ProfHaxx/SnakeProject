@@ -1,4 +1,4 @@
-package com.michaeli.snake;
+package src.main.java.com.michaeli.snake;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,7 +20,7 @@ public class App extends JFrame {
     public static final boolean GRID = true;
 
     public static void main(String[] args) {
-        System.out.println("[DEBUG] Game launched.");
+        System.out.println("[DEBUG] Game launched!");
         app = new App();
         app.setup();
         app.addComponents();
