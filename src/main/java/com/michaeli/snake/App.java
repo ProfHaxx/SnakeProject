@@ -18,7 +18,8 @@ public class App extends JFrame {
 
     //Debug Options
     public static final boolean GRID = true;
-
+    
+    //main methode
     public static void main(String[] args) {
         System.out.println("[DEBUG] Game launched!");
         app = new App();
