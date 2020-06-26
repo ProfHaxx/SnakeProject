@@ -1,4 +1,4 @@
-package src.main.java.com.michaeli.snake;
+package com.michaeli.snake;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

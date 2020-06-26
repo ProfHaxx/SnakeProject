@@ -1,10 +1,12 @@
-package src.main.java.com.michaeli.snake;
+package com.michaeli.snake;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
 public class App extends JFrame {
+
+    //initializing (Hier wird alles Initialisiert)
 
     public static App app;
     public static Snake snake;
@@ -16,10 +18,10 @@ public class App extends JFrame {
     public static final int COMPONENT_SIZE = 20;
     public static final int SPEED = 1000; // => 1 'tick' => 1 Second = 1000 Milliseconds
 
-    //Debug Options
+    //Debug Options (zur Fehlerbehebung)
     public static final boolean GRID = true;
     
-    //main methode
+    //main methode (Startet alles -> alles was ausgeführt werden soll muss hier rein)
     public static void main(String[] args) {
         System.out.println("[DEBUG] Game launched!");
         app = new App();
@@ -32,7 +34,7 @@ public class App extends JFrame {
         System.out.println(snake.toString());
     }
 
-    //Setup Functions
+    //Setup Functions (Erstellung des JFrames)
     public void setup() {
         setTitle("Snake");
         setSize(WIDTH, HEIGHT);
@@ -41,7 +43,7 @@ public class App extends JFrame {
         setVisible(true);
     }
 
-    //Components
+    //Components (Hinzufügen der Fensterkomponenten zum Fenster)
     public void addComponents() {
         snake = new Snake();
         adapter = new KeyAdapter();
@@ -50,7 +52,7 @@ public class App extends JFrame {
         addKeyListener(adapter);
     }
 
-    //Launch
+    //Launch (Erstellung der Schlange)
     public void launch() {
         snake.spawnSnake();
     }
