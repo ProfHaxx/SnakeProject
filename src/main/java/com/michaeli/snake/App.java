@@ -8,6 +8,7 @@ public class App extends JFrame {
 
     //initializing (Hier wird alles Initialisiert)
 
+    //Constants
     public static App app;
     public static Snake snake;
     public static KeyAdapter adapter;
