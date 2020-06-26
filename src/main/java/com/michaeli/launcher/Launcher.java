@@ -28,11 +28,8 @@ public class Launcher extends JFrame {
         JButton start = new JButton("Start Game");
         start.setBounds(100, 100, 80, 50);
         launcher.add(start);
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Would start the game if starting would be added");
-            }
+        start.addActionListener((ActionEvent e) -> {
+            System.out.println("Would start the game if starting would be added");
         });
     }
 
