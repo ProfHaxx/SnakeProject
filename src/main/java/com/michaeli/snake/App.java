@@ -58,3 +58,4 @@ public class App extends JFrame {
         snake.spawnSnake();
     }
 }
+//NahCuy war hier
