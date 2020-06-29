@@ -36,7 +36,20 @@ public class Snake extends JPanel {
 
     //Wrap-Around Movement?
     public void move() {
-        //Condition if out of map
+        //Condition if out of map mit warp around
+        if (head.getX() < 0) {
+            head.x = 20; //eigentlich WIDTH, aber warum wird WIDTH=1 und nicht 640?
+        }
+        if (head.getX() > 20) {
+            head.x = 0;
+        }
+        if (head.getY() < 0) {
+            head.y = 15; //eigentlich HEIGHT, aber warum wird HEIGTH=2 und nicht 400?
+        }
+        if (head.getY() > 15) {
+            head.y = 0;
+        }
+        //Richtungswechsel
         if(orientation == 1) {
             head.move(0, -1);
         } else if(orientation == 2) {
