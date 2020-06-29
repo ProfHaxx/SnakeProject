@@ -22,5 +22,4 @@ public class SnakeTail extends SnakeComponent {
     public int size() {
         return 1;
     }
-    //hallo testY
 }
