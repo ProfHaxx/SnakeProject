@@ -37,7 +37,7 @@ public class Snake extends JPanel {
     //Wrap-Around Movement?
     public void move() {
         //Condition if out of map
-        if (head.getX() < 0 && head.getX() > WIDTH && head.getY() < 0 && head.getY() > HEIGHT) {
+        if (head.getX() < 0 || head.getX() > WIDTH || head.getY() < 0 || head.getY() > HEIGHT) {
             dead = true;
         }
         //Richtungswechsel
