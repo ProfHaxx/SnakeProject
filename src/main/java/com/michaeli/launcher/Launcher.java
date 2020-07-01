@@ -11,6 +11,7 @@ public class Launcher extends JFrame {
 
     public static Launcher launcher;
     public static App game;
+    public static Settings settings;
 
     public static Snake snake;
 
@@ -30,14 +31,28 @@ public class Launcher extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        //Buttons
+        JButton setting = new JButton("Settings");
+        setting.setBounds(50,50,80,50);
+        setting.setLocation(30,30);
+        launcher.add(setting);
+
         JButton start = new JButton("Start Game");
-        start.setBounds(100, 100, 80, 50);
+        start.setBounds(50, 50, 80, 50);
+        start.setLocation(100,100);
         launcher.add(start);
+
+
         start.addActionListener((ActionEvent e) -> {
             game = new App();
             game.setup();
             game.addComponents();
             game.launch();
+        });
+
+        setting.addActionListener((ActionEvent e) -> {
+            settings = new Settings();
+            settings.setUp();
         });
     }
 
