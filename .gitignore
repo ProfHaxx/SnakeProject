@@ -1,9 +1,3 @@
 target/
 .idea/
 snake.iml
-team.defs
-**/package.bluej
-**/*.class
-**/*.ctxt
-doc/
-src/main/java/com/michaeli/README.TXT
