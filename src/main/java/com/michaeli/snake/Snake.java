@@ -40,18 +40,19 @@ public class Snake extends JPanel {
         //Condition if out of map mit warp around
         System.out.println("[DEBUG] (" + head.getX() + "|" + head.getY() + ")");
         if (head.getX() < 0) {
-            head.setX(App.WIDTH/App.COMPONENT_SIZE); //eigentlich WIDTH, aber warum wird WIDTH=1 und nicht 640?
+            head.setX(App.WIDTH/App.COMPONENT_SIZE);
         }
         if (head.getX() > App.WIDTH/App.COMPONENT_SIZE) {
             head.x = 0;
         }
         if (head.getY() < 0) {
-            head.setY(App.HEIGHT/App.COMPONENT_SIZE); //eigentlich HEIGHT, aber warum wird HEIGTH=2 und nicht 400?
+            head.setY(App.HEIGHT/App.COMPONENT_SIZE);
         }
         if (head.getY() > App.HEIGHT/App.COMPONENT_SIZE) {
             head.y = 0;
         }
-        //Richtungswechsel
+
+        //Direction Switch
         if(orientation == 1) {
             head.move(0, -1);
         } else if(orientation == 2) {
