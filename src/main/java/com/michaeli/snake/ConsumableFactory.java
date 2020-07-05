@@ -29,19 +29,21 @@ public class ConsumableFactory {
     public static void start() {
         foodWorker = new Thread(() -> {
             int refresh_counter = 0;
-            while(food <= 3) {
-                for(int i = 0; i < 30; i++) {
-                    Utility.sleep(1000);
-                    if(food == 0) {
+            while(true) {
+                if(food <= 3) {
+                    for(int i = 0; i < 30; i++) {
+                        Utility.sleep(1000);
+                        if(food == 0) {
+                            consumables.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
+                            refresh_counter = 0;
+                            break;
+                        }
+                        refresh_counter++;
+                    }
+                    if(refresh_counter == 30) {
                         consumables.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
                         refresh_counter = 0;
-                        break;
                     }
-                    refresh_counter++;
-                }
-                if(refresh_counter == 30) {
-                    consumables.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
-                    refresh_counter = 0;
                 }
             }
         });
