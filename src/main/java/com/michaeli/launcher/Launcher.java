@@ -33,7 +33,7 @@ public class Launcher extends JFrame {
         setVisible(true);
         //Buttons
         JButton setting = new JButton("Settings");
-        setting.setBounds(50,50,80,50);
+        setting.setBounds(50,50,100,50);
         setting.setLocation(30,30);
         launcher.add(setting);
 
