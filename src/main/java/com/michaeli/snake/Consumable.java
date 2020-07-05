@@ -10,20 +10,13 @@ import java.util.Objects;
 public class Consumable {
     int id, x, y;
 
-    BufferedImage apple, ghost;
+    BufferedImage apple = Utility.getImage("food/food_apple.png");
+    BufferedImage ghost = Utility.getImage("food/food_ghost.png");
 
     public Consumable(int id, int x, int y) {
         this.id = id;
         this.x = x;
         this.y = y;
-
-        try {
-            apple = ImageIO.read(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("food/food_apple.png")).getFile()));
-            ghost = ImageIO.read(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("food/food_ghost.png")).getFile()));
-        } catch (IOException e) {
-            System.err.println("[FATAL] Failed to load Resources");
-            e.printStackTrace();
-        }
         System.out.println("[DEBUG] Successfully created Food Object");
     }
 
