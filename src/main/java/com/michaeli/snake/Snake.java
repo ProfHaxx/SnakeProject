@@ -3,6 +3,7 @@ package com.michaeli.snake;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Snake extends JPanel {
@@ -37,16 +38,17 @@ public class Snake extends JPanel {
     //Wrap-Around Movement?
     public void move() {
         //Condition if out of map mit warp around
+        System.out.println("[DEBUG] (" + head.getX() + "|" + head.getY() + ")");
         if (head.getX() < 0) {
-            head.x = 20; //eigentlich WIDTH, aber warum wird WIDTH=1 und nicht 640?
+            head.setX(App.WIDTH/App.COMPONENT_SIZE); //eigentlich WIDTH, aber warum wird WIDTH=1 und nicht 640?
         }
-        if (head.getX() > 20) {
+        if (head.getX() > App.WIDTH/App.COMPONENT_SIZE) {
             head.x = 0;
         }
         if (head.getY() < 0) {
-            head.y = 15; //eigentlich HEIGHT, aber warum wird HEIGTH=2 und nicht 400?
+            head.setY(App.HEIGHT/App.COMPONENT_SIZE); //eigentlich HEIGHT, aber warum wird HEIGTH=2 und nicht 400?
         }
-        if (head.getY() > 15) {
+        if (head.getY() > App.HEIGHT/App.COMPONENT_SIZE) {
             head.y = 0;
         }
         //Richtungswechsel
@@ -58,6 +60,19 @@ public class Snake extends JPanel {
             head.move(0, 1);
         } else {
             head.move(1, 0);
+        }
+
+        int foodIndex = -1;
+        //List to avoid ConcurrentModificationException
+        ArrayList<Consumable> temporaryList = new ArrayList<>(ConsumableFactory.consumables);
+        for(Consumable consumable:temporaryList) {
+            if(head.getX() == consumable.getX() && head.getY() == consumable.getY()) {
+                foodIndex = ConsumableFactory.consumables.indexOf(consumable);
+            }
+        }
+        if(foodIndex != -1) {
+            ConsumableFactory.consumables.remove(foodIndex);
+            grow();
         }
     }
 
@@ -77,6 +92,7 @@ public class Snake extends JPanel {
             grid(g2d);
         }
         //Draw Items
+        ConsumableFactory.consumables.forEach(e -> e.paint(g2d));
         //Draw Snake
         head.paint(g2d);
     }

@@ -9,7 +9,6 @@ public class App extends JFrame {
     //Constants
     public static App app;
     public static Snake snake;
-    public static ConsumableFactory factory;
     public static KeyAdapter adapter;
 
     public static final int HEIGHT = 400;
@@ -55,6 +54,6 @@ public class App extends JFrame {
     //Launch (Snake Creation)
     public void launch() {
         snake.spawnSnake();
-        factory.start();
+        ConsumableFactory.start();
     }
 }
