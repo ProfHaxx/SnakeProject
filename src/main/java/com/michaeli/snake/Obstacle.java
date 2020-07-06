@@ -8,17 +8,25 @@ import java.util.Random;
 public class Obstacle {
     int id, x, y;
     public Obstacle (int id, int x, int y) {
-        this.id = id;
+        this.id = id; //id lasse ich mal drin, für den Fall, dass wir verschiedene Hindernisse implementieren wollen
         this.x = x;
         this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public static ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public static void spawnObstacles() {
-
-
-
+        for(int i = 0; i < 20; i ++) {
+            obstacles.add(generate(App.WIDTH / App.COMPONENT_SIZE, App.HEIGHT / App.COMPONENT_SIZE));
+        }
     }
 
     public static Obstacle generate (int width, int height) {
@@ -27,8 +35,6 @@ public class Obstacle {
         int y = random.nextInt(height);
         return new Obstacle(0, x, y);
     }
-
-    //obstacles.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
 
     public void paint(Graphics2D g) {
         g.setColor(Color.BLACK);
