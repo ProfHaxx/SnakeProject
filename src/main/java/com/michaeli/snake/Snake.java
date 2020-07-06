@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
+import static com.michaeli.snake.Obstacle.obstacles;
+
 public class Snake extends JPanel {
 
     //Diverse Effect Counters.
@@ -87,6 +89,19 @@ public class Snake extends JPanel {
             }
             ConsumableFactory.consumables.remove(foodIndex);
         }
+
+        //condition if Snake hits Obstacle
+        //AayList<Obstacle> temporaryList1 =new ArrayList<>(obstacles);
+        for(Obstacle obstacle:obstacles)
+            if(head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
+            die();
+            }
+        }
+
+    public void die() {
+        dead = true;
+        System.out.println("GAME OVER"); //evtl neues Fenster aufpoppen lassen?
+        //Score?
     }
 
     public void checkDead() {
@@ -120,6 +135,8 @@ public class Snake extends JPanel {
         }
         //Draw Items
         ConsumableFactory.consumables.forEach(e -> e.paint(g2d));
+        //Draw Obstacles
+        obstacles.forEach(e-> e.paint(g2d));
         //Draw Snake
         head.paint(g2d);
     }

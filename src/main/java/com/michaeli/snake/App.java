@@ -14,10 +14,10 @@ public class App extends JFrame {
     public static Obstacle obstacle;
 
     public static final int HEIGHT = 400;
-    public static final int WIDTH = 640; // im Fenster wird aber nur ungefähr 25 * 20 angezeigt?
+    public static final int WIDTH = 640; // für Snake ist eine Längeneinheit 20
 
     public static final int COMPONENT_SIZE = 20;
-    public static final int SPEED = 1000; // => 1 'tick' => 1 Second = 1000 Milliseconds
+    public static final int SPEED = 500; // 1000 => 1 'tick' => 1 Second = 1000 Milliseconds
 
     //Debug Options
     public static final boolean GRID = true;
@@ -57,6 +57,6 @@ public class App extends JFrame {
     public void launch() {
         snake.spawnSnake();
         ConsumableFactory.start();
-        Obstacle.spawnObstacles();
+        obstacle.spawnObstacles();
     }
 }
