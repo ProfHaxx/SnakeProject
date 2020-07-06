@@ -24,6 +24,10 @@ public class Consumable {
         return y;
     }
 
+    public int getId() {
+        return id;
+    }
+
     //Painting with if around id
     public void paint(Graphics2D g) {
         if(id == 0) {           //Apple

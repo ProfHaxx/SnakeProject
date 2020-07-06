@@ -28,7 +28,10 @@ public abstract class SnakeComponent {
         this.y = y;
     }
 
-    
+    public boolean isDead(int x, int y) {
+        return next.isDead(x, y) || (this.x == x && this.y == y);
+    }
+
     public abstract int size();
     public abstract void paint(Graphics2D g);
 }
