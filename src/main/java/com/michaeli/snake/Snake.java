@@ -49,24 +49,24 @@ public class Snake extends JPanel {
         //Condition if out of map mit warp around
         System.out.println("[DEBUG] (" + head.getX() + "|" + head.getY() + ")");
         if (head.getX() < 0) {
-            head.setX(App.WIDTH/App.COMPONENT_SIZE);
+            head.setX(App.WIDTH / App.COMPONENT_SIZE);
         }
-        if (head.getX() > App.WIDTH/App.COMPONENT_SIZE) {
+        if (head.getX() > App.WIDTH / App.COMPONENT_SIZE) {
             head.x = 0;
         }
         if (head.getY() < 0) {
-            head.setY(App.HEIGHT/App.COMPONENT_SIZE);
+            head.setY(App.HEIGHT / App.COMPONENT_SIZE);
         }
-        if (head.getY() > App.HEIGHT/App.COMPONENT_SIZE) {
+        if (head.getY() > App.HEIGHT / App.COMPONENT_SIZE) {
             head.y = 0;
         }
 
         //Direction Switch
-        if(orientation == 1) {
+        if (orientation == 1) {
             head.move(0, -1);
-        } else if(orientation == 2) {
+        } else if (orientation == 2) {
             head.move(-1, 0);
-        } else if(orientation == 3) {
+        } else if (orientation == 3) {
             head.move(0, 1);
         } else {
             head.move(1, 0);
@@ -75,16 +75,16 @@ public class Snake extends JPanel {
         int foodIndex = -1;
         //List to avoid ConcurrentModificationException
         ArrayList<Consumable> temporaryList = new ArrayList<>(ConsumableFactory.consumables);
-        for(Consumable consumable:temporaryList) {
-            if(head.getX() == consumable.getX() && head.getY() == consumable.getY()) {
+        for (Consumable consumable : temporaryList) {
+            if (head.getX() == consumable.getX() && head.getY() == consumable.getY()) {
                 foodIndex = ConsumableFactory.consumables.indexOf(consumable);
             }
         }
-        if(foodIndex != -1) {
+        if (foodIndex != -1) {
             Consumable food = ConsumableFactory.consumables.get(foodIndex);
-            if(food.getId() == 0) {
+            if (food.getId() == 0) {
                 grow();
-            } else if(food.getId() == 1) {
+            } else if (food.getId() == 1) {
                 startEffect(0, 10);
             }
             ConsumableFactory.consumables.remove(foodIndex);
@@ -92,11 +92,12 @@ public class Snake extends JPanel {
 
         //condition if Snake hits Obstacle
         //AayList<Obstacle> temporaryList1 =new ArrayList<>(obstacles);
-        for(Obstacle obstacle:obstacles)
-            if(head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
-            die();
+        for (Obstacle obstacle : obstacles) {
+            if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
+                die();
             }
         }
+    }
 
     public void die() {
         dead = true;
