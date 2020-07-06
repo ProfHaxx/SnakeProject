@@ -19,6 +19,11 @@ public class SnakeTail extends SnakeComponent {
     }
 
     @Override
+    public boolean isDead(int x, int y) {
+        return this.x == x && this.y == y;
+    }
+
+    @Override
     public int size() {
         return 1;
     }

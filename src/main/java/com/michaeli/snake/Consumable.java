@@ -1,11 +1,7 @@
 package com.michaeli.snake;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
 
 public class Consumable {
     int id, x, y;
@@ -26,6 +22,10 @@ public class Consumable {
 
     public int getY() {
         return y;
+    }
+
+    public int getId() {
+        return id;
     }
 
     //Painting with if around id

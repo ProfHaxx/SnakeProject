@@ -10,6 +10,12 @@ import static com.michaeli.snake.Obstacle.obstacles;
 
 public class Snake extends JPanel {
 
+    //Diverse Effect Counters.
+    public int[] effect_counter = new int[1];
+
+    //Effect Table
+    //0: Ghost
+
     public SnakeHead head;
     public int orientation = 0; //Unit Circle: 90 deg. * orientation is snake's angle.
     public boolean dead = false;
@@ -26,8 +32,9 @@ public class Snake extends JPanel {
                 Utility.sleep(App.SPEED);
                 move();
                 repaint();
+                checkDead();
             }
-        });
+        }, "Game Tick Worker");
         snakeWorker.start();
     }
 
@@ -74,8 +81,13 @@ public class Snake extends JPanel {
             }
         }
         if(foodIndex != -1) {
+            Consumable food = ConsumableFactory.consumables.get(foodIndex);
+            if(food.getId() == 0) {
+                grow();
+            } else if(food.getId() == 1) {
+                startEffect(0, 10);
+            }
             ConsumableFactory.consumables.remove(foodIndex);
-            grow();
         }
 
         //condition if Snake hits Obstacle
@@ -92,8 +104,22 @@ public class Snake extends JPanel {
         //Score?
     }
 
+    public void checkDead() {
+        dead = head.isDead() && effect_counter[0] == 0;
+    }
+
     public void grow() {
         head.grow();
+    }
+
+    public void startEffect(int effectId, int duration) {
+        new Thread(() -> {
+            effect_counter[effectId] = duration;
+            while(effect_counter[effectId] > 0) {
+                Utility.sleep(1000);
+                effect_counter[effectId]--;
+            }
+        }, "Effect Worker").start();
     }
 
     @Override

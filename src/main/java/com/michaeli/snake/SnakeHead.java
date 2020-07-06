@@ -27,6 +27,10 @@ public class SnakeHead {
         return y;
     }
 
+    public boolean isDead() {
+        return next.isDead(x, y);
+    }
+
     public void paint(Graphics2D g) {
         g.setColor(Color.GREEN);
         g.fillRect(this.x*App.COMPONENT_SIZE, this.y*App.COMPONENT_SIZE, App.COMPONENT_SIZE, App.COMPONENT_SIZE);
