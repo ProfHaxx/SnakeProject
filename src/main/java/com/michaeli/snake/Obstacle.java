@@ -24,7 +24,7 @@ public class Obstacle {
     public static ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public static void spawnObstacles() {
-        for(int i = 0; i < 20; i ++) {
+        for(int i = 0; i < (App.WIDTH+App.HEIGHT)/30; i ++) {
             obstacles.add(generate(App.WIDTH / App.COMPONENT_SIZE, App.HEIGHT / App.COMPONENT_SIZE));
         }
     }

@@ -91,7 +91,6 @@ public class Snake extends JPanel {
         }
 
         //condition if Snake hits Obstacle
-        //AayList<Obstacle> temporaryList1 =new ArrayList<>(obstacles);
         for (Obstacle obstacle : obstacles) {
             if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
                 die();
@@ -106,7 +105,11 @@ public class Snake extends JPanel {
     }
 
     public void checkDead() {
-        dead = head.isDead() && effect_counter[0] == 0;
+        if (dead != true) {
+            if (head.isDead() && effect_counter[0] == 0) {
+                die();
+            }
+        }
     }
 
     public void grow() {
