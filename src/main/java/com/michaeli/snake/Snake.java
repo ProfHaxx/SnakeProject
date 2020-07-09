@@ -47,7 +47,7 @@ public class Snake extends JPanel {
     //Wrap-Around Movement?
     public void move() {
         //Condition if out of map mit warp around
-        System.out.println("[DEBUG] (" + head.getX() + "|" + head.getY() + ")");
+        //System.out.println("[DEBUG] (" + head.getX() + "|" + head.getY() + ")");
         if (head.getX() < 0) {
             head.setX(App.WIDTH / App.COMPONENT_SIZE);
         }
@@ -128,7 +128,7 @@ public class Snake extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("[DEBUG] Panel Repaint");
+        //System.out.println("[DEBUG] Panel Repaint");
         Graphics2D g2d = (Graphics2D) g;
         //Clear Image
         g2d.clearRect(0, 0, App.WIDTH, App.HEIGHT);

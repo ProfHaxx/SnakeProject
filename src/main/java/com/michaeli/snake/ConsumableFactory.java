@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.michaeli.snake.Obstacle.obstacles;
+
 public class ConsumableFactory {
 
     public static ArrayList<Consumable> consumables = new ArrayList<>();
@@ -18,6 +20,12 @@ public class ConsumableFactory {
         if(rand <= 0.8) {
             int x = random.nextInt(width);
             int y = random.nextInt(height);
+            //condition to prevent apple spawning in obstacle
+            for (Obstacle obstacle : obstacles) {
+                if (x == obstacle.getX() && y == obstacle.getY()) {
+                    generate(width, height);
+                }
+            }
             return new Consumable(0, x, y);
         } else if(rand > 0.8){
             int x = random.nextInt(width);
