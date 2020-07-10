@@ -72,6 +72,8 @@ public class Snake extends JPanel {
             head.move(1, 0);
         }
 
+        head.pushOrientation(orientation);
+
         int foodIndex = -1;
         //List to avoid ConcurrentModificationException
         ArrayList<Consumable> temporaryList = new ArrayList<>(ConsumableFactory.consumables);

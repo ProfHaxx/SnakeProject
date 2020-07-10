@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 public abstract class SnakeComponent {
     int x=-2, y=-2;
+    int orientation = 0;
     SnakeComponent next;
 
     public int getX() {
@@ -34,4 +35,5 @@ public abstract class SnakeComponent {
 
     public abstract int size();
     public abstract void paint(Graphics2D g);
+    public abstract void pushOrientation(int orientation);
 }
