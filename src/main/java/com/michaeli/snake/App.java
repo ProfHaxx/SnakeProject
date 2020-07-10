@@ -11,7 +11,6 @@ public class App extends JFrame {
     public static App app;
     public static Snake snake;
     public static KeyAdapter adapter;
-    public static Obstacle obstacle;
 
     public static final int HEIGHT = 400;
     public static final int WIDTH = 640; // für Snake ist eine Längeneinheit 20
@@ -57,6 +56,6 @@ public class App extends JFrame {
     public void launch() {
         snake.spawnSnake();
         ConsumableFactory.start();
-        obstacle.spawnObstacles();
+        Obstacle.spawnObstacles();
     }
 }

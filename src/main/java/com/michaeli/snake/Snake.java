@@ -31,8 +31,8 @@ public class Snake extends JPanel {
             while(!dead) {
                 Utility.sleep(App.SPEED);
                 move();
-                repaint();
                 checkDead();
+                repaint();
             }
         }, "Game Tick Worker");
         snakeWorker.start();
@@ -89,13 +89,6 @@ public class Snake extends JPanel {
             }
             ConsumableFactory.consumables.remove(foodIndex);
         }
-
-        //condition if Snake hits Obstacle
-        for (Obstacle obstacle : obstacles) {
-            if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
-                die();
-            }
-        }
     }
 
     public void die() {
@@ -105,8 +98,15 @@ public class Snake extends JPanel {
     }
 
     public void checkDead() {
-        if (dead != true) {
-            if (head.isDead() && effect_counter[0] == 0) {
+        if (!dead && effect_counter[0] == 0) {
+            //condition if Snake hits Obstacle
+            for (Obstacle obstacle : obstacles) {
+                if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
+                    die();
+                }
+            }
+
+            if (head.isDead()) {
                 die();
             }
         }
