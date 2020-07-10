@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class SnakeBody extends SnakeComponent {
 
+    BufferedImage dead_body = Utility.getSnakeImage("snake/snake_dead.png")[1];
     BufferedImage body = Utility.getSnakeImage("snake/snake_green.png")[1];
 
     @Override

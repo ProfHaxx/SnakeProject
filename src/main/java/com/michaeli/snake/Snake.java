@@ -10,6 +10,14 @@ import static com.michaeli.snake.Obstacle.obstacles;
 
 public class Snake extends JPanel {
 
+    /*
+    ⦿ Smooth Textures
+    ⦿ Snake 'Terrain' Generation Fix
+    ⦾ Menu Design
+    ⦾ Settings for [Textures, Terrain Gen]
+    ⦾ (Hotseat)-Multiplayer Option
+    * */
+
     //Diverse Effect Counters.
     public int[] effect_counter = new int[1];
 

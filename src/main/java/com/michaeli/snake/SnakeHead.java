@@ -9,6 +9,7 @@ public class SnakeHead {
     int x, y;
     SnakeComponent next;
 
+    BufferedImage dead_head = Utility.getSnakeImage("snake/snake_dead.png")[0];
     BufferedImage head = Utility.getSnakeImage("snake/snake_green.png")[0];
 
     public SnakeHead() {
