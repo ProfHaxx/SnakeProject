@@ -49,6 +49,10 @@ public class Launcher extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("[DEBUG] Play");
+                App app = new App();
+                app.setup();
+                app.addComponents();
+                app.launch();
             }
 
             @Override
