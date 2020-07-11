@@ -2,10 +2,11 @@ package com.michaeli.launcher;
 
 import com.michaeli.snake.App;
 import com.michaeli.snake.Snake;
+import com.michaeli.snake.Utility;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 public class Launcher extends JFrame {
 
@@ -16,13 +17,21 @@ public class Launcher extends JFrame {
     public static Snake snake;
 
     public static final int WIDTH = 640;
-    public static final int HEIGHT = 400;
+    public static final int HEIGHT = 500;
+
+    RectangularButton play_btn;
+    RectangularButton settings_btn;
+
+    BufferedImage play_content = Utility.getImage("menu/play-dummy.png");
+    BufferedImage settings_content = Utility.getImage("menu/settings-dummy.png");
 
 
     //main method (Startet alles -> alles was ausgeführt werden soll muss hier rein)
     public static void main(String[]args){
         launcher = new Launcher();
+        launcher.addComponents();
         launcher.setUpLauncher();
+        launcher.animate();
     }
 
     public void setUpLauncher(){
@@ -31,32 +40,52 @@ public class Launcher extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
-        //Buttons
-        JButton setting = new JButton("Settings");
-        setting.setBounds(50,50,100,50);
-        setting.setLocation(30,30);
-        launcher.add(setting);
-
-        JButton start = new JButton("Start Game");
-        start.setBounds(50, 50, 80, 50);
-        start.setLocation(100,100);
-        launcher.add(start);
-
-
-        start.addActionListener((ActionEvent e) -> {
-            game = new App();
-            game.setup();
-            game.addComponents();
-            game.launch();
-        });
-
-        setting.addActionListener((ActionEvent e) -> {
-            settings = new Settings();
-            settings.setUp();
-        });
     }
 
     public void addComponents(){
+        //Custom Buttons
+        play_btn = new RectangularButton(15, 10, play_content, true);
+        play_btn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("[DEBUG] Play");
+            }
 
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("[DEBUG] Hover over Play");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                System.out.println("[DEBUG] Left Play");
+            }
+        });
+        launcher.add(play_btn);
+
+        settings_btn = new RectangularButton(15, 110, settings_content, true);
+        settings_btn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("[DEBUG] Settings");
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("[DEBUG] Hover over Settings");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                System.out.println("[DEBUG] Left Settings");
+            }
+        });
+        launcher.add(settings_btn);
+    }
+
+    public void animate() {
+        play_btn.horizontalFlyIn();
+        Utility.sleep(500);
+        settings_btn.horizontalFlyIn();
     }
 }

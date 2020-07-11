@@ -17,9 +17,6 @@ public class SnakeTail extends SnakeComponent {
 
     @Override
     public void paint(Graphics2D g) {
-        //For this, I'll just use a different color
-//        g.setColor(Color.BLUE);
-//        g.fillRect(this.x*App.COMPONENT_SIZE, this.y*App.COMPONENT_SIZE, App.COMPONENT_SIZE, App.COMPONENT_SIZE);
         int angle = (orientation%2==0) ? (orientation+1)*90 : (orientation-1)*90;
         g.drawImage(Utility.rotate(tail, angle), x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
     }
