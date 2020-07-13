@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Obstacle {
+
+    BufferedImage wall = Utility.getImage("wall/wall_1.png");
+
     int id, x, y;
-
-    BufferedImage wall = Utility.getImage("wall/wall_2.png");
-
     public Obstacle (int id, int x, int y) {
         this.id = id; //id lasse ich mal drin, für den Fall, dass wir verschiedene Hindernisse implementieren wollen
         this.x = x;
@@ -42,8 +42,6 @@ public class Obstacle {
 
     public void paint(Graphics2D g) {
         g.drawImage(wall, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
-        //g.setColor(Color.BLACK);
-        //g.fillRect(this.x*App.COMPONENT_SIZE, this.y*App.COMPONENT_SIZE, App.COMPONENT_SIZE, App.COMPONENT_SIZE);
     }
 
 }

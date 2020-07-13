@@ -10,6 +10,14 @@ import static com.michaeli.snake.Obstacle.obstacles;
 
 public class Snake extends JPanel {
 
+    /*
+    ⦿ Smooth Textures
+    ⦿ Snake 'Terrain' Generation Fix
+    ⦾ Menu Design
+    ⦾ Settings for [Textures, Terrain Gen]
+    ⦾ (Hotseat)-Multiplayer Option
+    * */
+
     //Diverse Effect Counters.
     public int[] effect_counter = new int[1];
 
@@ -31,8 +39,8 @@ public class Snake extends JPanel {
             while(!dead) {
                 Utility.sleep(App.SPEED);
                 move();
-                repaint();
                 checkDead();
+                repaint();
             }
         }, "Game Tick Worker");
         snakeWorker.start();
@@ -72,6 +80,8 @@ public class Snake extends JPanel {
             head.move(1, 0);
         }
 
+        head.pushOrientation(orientation);
+
         int foodIndex = -1;
         //List to avoid ConcurrentModificationException
         ArrayList<Consumable> temporaryList = new ArrayList<>(ConsumableFactory.consumables);
@@ -89,13 +99,6 @@ public class Snake extends JPanel {
             }
             ConsumableFactory.consumables.remove(foodIndex);
         }
-
-        //condition if Snake hits Obstacle
-        for (Obstacle obstacle : obstacles) {
-            if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
-                die();
-            }
-        }
     }
 
     public void die() {
@@ -105,8 +108,15 @@ public class Snake extends JPanel {
     }
 
     public void checkDead() {
-        if (dead != true) {
-            if (head.isDead() && effect_counter[0] == 0) {
+        if (!dead && effect_counter[0] == 0) {
+            //condition if Snake hits Obstacle
+            for (Obstacle obstacle : obstacles) {
+                if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
+                    die();
+                }
+            }
+
+            if (head.isDead()) {
                 die();
             }
         }
