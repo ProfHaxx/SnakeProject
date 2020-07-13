@@ -28,16 +28,21 @@ public class Obstacle {
     public static ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public static void spawnObstacles() {
-        for(int i = 0; i < (App.WIDTH+App.HEIGHT)/30; i ++) {
+        for(int i = 0; i < (App.WIDTH+App.HEIGHT)/25; i ++) {
             obstacles.add(generate(App.WIDTH / App.COMPONENT_SIZE, App.HEIGHT / App.COMPONENT_SIZE));
         }
     }
 
     public static Obstacle generate (int width, int height) {
         Random random = new Random();
-        int x = random.nextInt(width);
-        int y = random.nextInt(height);
+        int x = random_between(3, width-3);
+        int y = random_between(3, height-3);
         return new Obstacle(0, x, y);
+    }
+
+    public static int random_between (int untereGrenze, int obereGrenze) {
+        int differenz = obereGrenze - untereGrenze;
+        return (int) (Math.random() * differenz) + untereGrenze;
     }
 
     public void paint(Graphics2D g) {
