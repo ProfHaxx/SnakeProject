@@ -55,7 +55,7 @@ public class App extends JFrame {
     //Launch (Snake Creation)
     public void launch() {
         snake.spawnSnake();
-        ConsumableFactory.start();
         Obstacle.spawnObstacles();
+        ConsumableFactory.start();
     }
 }
