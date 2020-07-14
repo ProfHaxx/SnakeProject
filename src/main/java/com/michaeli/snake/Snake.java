@@ -18,8 +18,28 @@ public class Snake extends JPanel {
     ⦾ (Hotseat)-Multiplayer Option
     * */
 
-    //Diverse Effect Counters.
-    public int[] effect_counter = new int[1];
+    //Diverse Effect Handler
+    public Effect[] effects = new Effect[]{new Effect(0, 0) {
+        @Override
+        public void tick() {
+            System.out.println("[DEBUG/Effect] Ghost active!");
+        }
+    }, new Effect(1, 0) {
+        @Override
+        public void tick() {
+            System.out.println("[DEBUG/Effect] Shadow active!");
+        }
+    }, new Effect(2, 0) {
+        @Override
+        public void tick() {
+            System.out.println("[DEBUG/Effect] Speed Boost active!");
+        }
+    }, new Effect(3, 0) {
+        @Override
+        public void tick() {
+            System.out.println("[DEBUG/Effect] Speed Decrease active!");
+        }
+    }};
 
     //Effect Table
     //0: Ghost
@@ -94,8 +114,8 @@ public class Snake extends JPanel {
             Consumable food = ConsumableFactory.consumables.get(foodIndex);
             if (food.getId() == 0) {
                 grow();
-            } else if (food.getId() == 1) {
-                startEffect(0, 10);
+            } else if (food.getId() >= 1) {
+                effects[food.getId()-1].start(10);
             }
             ConsumableFactory.consumables.remove(foodIndex);
         }
@@ -108,7 +128,7 @@ public class Snake extends JPanel {
     }
 
     public void checkDead() {
-        if (!dead && effect_counter[0] == 0) {
+        if (!dead && !effects[0].active()) {
             //condition if Snake hits Obstacle
             for (Obstacle obstacle : obstacles) {
                 if (head.getX() == obstacle.getX() && head.getY() == obstacle.getY()) {
@@ -116,24 +136,12 @@ public class Snake extends JPanel {
                 }
             }
 
-            if (head.isDead()) {
-                die();
-            }
+            if (head.isDead()) die();
         }
     }
 
     public void grow() {
         head.grow();
-    }
-
-    public void startEffect(int effectId, int duration) {
-        new Thread(() -> {
-            effect_counter[effectId] = duration;
-            while(effect_counter[effectId] > 0) {
-                Utility.sleep(1000);
-                effect_counter[effectId]--;
-            }
-        }, "Effect Worker").start();
     }
 
     @Override
@@ -153,6 +161,14 @@ public class Snake extends JPanel {
         obstacles.forEach(e-> e.paint(g2d));
         //Draw Snake
         head.paint(g2d);
+
+        if(effects[1].active()) {
+            nearSight(g2d);
+        }
+    }
+
+    public void nearSight(Graphics2D g) {
+        //https://stackoverflow.com/questions/46797579/how-can-i-control-the-brightness-of-an-image
     }
 
     public void grid(Graphics2D g) {

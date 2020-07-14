@@ -52,6 +52,10 @@ public class App extends JFrame {
         addKeyListener(adapter);
     }
 
+    public void screenshot() {
+        //https://stackoverflow.com/questions/8201705/java-awt-graphics-change-color-after-drawing
+    }
+
     //Launch (Snake Creation)
     public void launch() {
         snake.spawnSnake();

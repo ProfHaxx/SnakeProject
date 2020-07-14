@@ -1,5 +1,7 @@
 package com.michaeli.snake;
 
+import com.michaeli.launcher.Launcher;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -30,6 +32,10 @@ public class KeyAdapter implements KeyListener {
                 break;
             case KeyEvent.VK_G:
                 App.snake.grow();
+                break;
+            case KeyEvent.VK_F2:
+                Launcher.game.screenshot();
+                break;
         }
     }
 
