@@ -1,6 +1,9 @@
-package com.michaeli.snake;
+package com.michaeli.snake.consumable;
 
-import java.awt.image.BufferedImage;
+import com.michaeli.snake.App;
+import com.michaeli.snake.Utility;
+import com.michaeli.snake.consumable.Consumable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,23 +40,25 @@ public class ConsumableFactory {
         foodWorker = new Thread(() -> {
             int refresh_counter = 0;
             while(true) {
-                if(food <= 3) {
-                    for(int i = 0; i < 30; i++) {
-                        Utility.sleep(1000);
-                        if(food == 0) {
-                            consumables.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
-                            refresh_counter = 0;
-                            break;
-                        }
-                        refresh_counter++;
-                    }
-                    if(refresh_counter == 30) {
-                        consumables.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
-                        refresh_counter = 0;
-                    }
+                while(food > 0 && refresh_counter < 10) {
+                    refresh_counter++;
+                    Utility.sleep(1000);
                 }
+                refresh_counter = 0;
+                spawn();
             }
         });
         foodWorker.start();
+    }
+
+    public static void eat(int index) {
+        food--;
+        consumables.remove(index);
+    }
+
+    public static void spawn() {
+        System.out.println("[Debug/Food] Food Spawned!");
+        consumables.add(generate(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE));
+        food++;
     }
 }

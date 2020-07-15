@@ -1,8 +1,14 @@
 package com.michaeli.snake;
 
+import com.michaeli.snake.consumable.Consumable;
+import com.michaeli.snake.consumable.ConsumableFactory;
+import com.michaeli.snake.consumable.Effect;
+import com.michaeli.snake.snake.SnakeHead;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -33,13 +39,17 @@ public class Snake extends JPanel {
         @Override
         public void tick() {
             System.out.println("[DEBUG/Effect] Speed Boost active!");
+            App.SPEED *= 1.001;
         }
     }, new Effect(3, 0) {
         @Override
         public void tick() {
             System.out.println("[DEBUG/Effect] Speed Decrease active!");
+            App.SPEED *= 0.999;
         }
     }};
+
+    public int[] effect_duration = new int[]{15, 30, 10, 10};
 
     //Effect Table
     //0: Ghost
@@ -59,6 +69,8 @@ public class Snake extends JPanel {
             while(!dead) {
                 Utility.sleep(App.SPEED);
                 move();
+                wrapAround();
+                checkFood();
                 checkDead();
                 repaint();
             }
@@ -76,18 +88,6 @@ public class Snake extends JPanel {
     public void move() {
         //Condition if out of map mit warp around
         System.out.println("[DEBUG] (" + head.getX() + "|" + head.getY() + ")");
-        if (head.getX() < 0) {
-            head.setX(App.WIDTH / App.COMPONENT_SIZE);
-        }
-        if (head.getX() > App.WIDTH / App.COMPONENT_SIZE) {
-            head.x = 0;
-        }
-        if (head.getY() < 0) {
-            head.setY(App.HEIGHT / App.COMPONENT_SIZE);
-        }
-        if (head.getY() > App.HEIGHT / App.COMPONENT_SIZE) {
-            head.y = 0;
-        }
 
         //Direction Switch
         if (orientation == 1) {
@@ -101,7 +101,9 @@ public class Snake extends JPanel {
         }
 
         head.pushOrientation(orientation);
+    }
 
+    public void checkFood() {
         int foodIndex = -1;
         //List to avoid ConcurrentModificationException
         ArrayList<Consumable> temporaryList = new ArrayList<>(ConsumableFactory.consumables);
@@ -115,14 +117,30 @@ public class Snake extends JPanel {
             if (food.getId() == 0) {
                 grow();
             } else if (food.getId() >= 1) {
-                effects[food.getId()-1].start(10);
+                effects[food.getId()-1].start(effect_duration[food.getId()-1]);
             }
-            ConsumableFactory.consumables.remove(foodIndex);
+            ConsumableFactory.eat(foodIndex);
+        }
+    }
+
+    public void wrapAround() {
+        if (head.getX() < 0) {
+            head.setX(App.WIDTH / App.COMPONENT_SIZE);
+        }
+        if (head.getX() > App.WIDTH / App.COMPONENT_SIZE) {
+            head.setX(0);
+        }
+        if (head.getY() < 0) {
+            head.setY(App.HEIGHT / App.COMPONENT_SIZE);
+        }
+        if (head.getY() > App.HEIGHT / App.COMPONENT_SIZE) {
+            head.setY(0);
         }
     }
 
     public void die() {
         dead = true;
+        head.sendDeath();
         System.out.println("GAME OVER"); //evtl neues Fenster aufpoppen lassen?
         //Score?
     }
@@ -162,13 +180,35 @@ public class Snake extends JPanel {
         //Draw Snake
         head.paint(g2d);
 
-        if(effects[1].active()) {
+        if(effects[1].active() && !copying) {
             nearSight(g2d);
         }
     }
 
+    boolean copying = false;
     public void nearSight(Graphics2D g) {
-        //https://stackoverflow.com/questions/46797579/how-can-i-control-the-brightness-of-an-image
+        BufferedImage screen = new BufferedImage(App.WIDTH, App.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        copying = true;
+        this.paint(screen.getGraphics());
+        copying = false;
+
+        int[] pixel = {0, 0, 0, 0};
+        float[] hsbvals = {0, 0, 0};
+
+        for(int i = 0; i < screen.getHeight(); i++) {
+            for(int j = 0; j < screen.getWidth(); j++) {
+                screen.getRaster().getPixel(j, i, pixel);
+                Color.RGBtoHSB(pixel[0], pixel[1], pixel[2], hsbvals);
+                float brightness = (float) (1.0/(Math.pow((distToHead(j, i)+1)/10.0, 1.25)));
+                Color adjusted = new Color(Color.HSBtoRGB(hsbvals[0], hsbvals[1], hsbvals[2] * brightness));
+                screen.getRaster().setPixel(j, i, new int[]{adjusted.getRed(), adjusted.getGreen(), adjusted.getBlue(), pixel[3]});
+            }
+        }
+        g.drawImage(screen, 0, 0, null);
+    }
+
+    public double distToHead(int px, int py) {
+        return Math.sqrt(Math.pow((head.getX()*App.COMPONENT_SIZE+10)-px,2)+Math.pow((head.getY()*App.COMPONENT_SIZE+10)-py,2));
     }
 
     public void grid(Graphics2D g) {

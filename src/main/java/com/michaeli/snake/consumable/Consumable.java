@@ -1,4 +1,7 @@
-package com.michaeli.snake;
+package com.michaeli.snake.consumable;
+
+import com.michaeli.snake.App;
+import com.michaeli.snake.Utility;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,7 +19,6 @@ public class Consumable {
         this.id = id;
         this.x = x;
         this.y = y;
-        System.out.println("[DEBUG] Successfully created Food Object");
     }
 
     public int getX() {
@@ -34,7 +36,7 @@ public class Consumable {
     //Painting with if around id
     public void paint(Graphics2D g) {
         if(id == 0) {
-            g.drawImage(apple, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            g.drawImage(apple, x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         } else if(id == 1) {
             g.drawImage(ghost, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         } else if(id == 2) {
