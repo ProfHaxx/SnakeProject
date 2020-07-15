@@ -1,7 +1,8 @@
 package com.michaeli.snake;
 
+import com.michaeli.snake.consumable.ConsumableFactory;
+
 import javax.swing.JFrame;
-import java.awt.*;
 
 public class App extends JFrame {
 
@@ -16,7 +17,7 @@ public class App extends JFrame {
     public static final int WIDTH = 640; // für Snake ist eine Längeneinheit 20
 
     public static final int COMPONENT_SIZE = 20;
-    public static final int SPEED = 500; // 1000 => 1 'tick' => 1 Second = 1000 Milliseconds
+    public static int SPEED = 500; // 1000 => 1 'tick' => 1 Second = 1000 Milliseconds
 
     //Debug Options
     public static final boolean GRID = true;
@@ -50,6 +51,10 @@ public class App extends JFrame {
 
         add(snake);
         addKeyListener(adapter);
+    }
+
+    public void screenshot() {
+        //https://stackoverflow.com/questions/8201705/java-awt-graphics-change-color-after-drawing
     }
 
     //Launch (Snake Creation)

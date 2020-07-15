@@ -1,10 +1,11 @@
-package com.michaeli.snake;
+package com.michaeli.snake.snake;
 
 import java.awt.Graphics2D;
 
 public abstract class SnakeComponent {
     int x=-2, y=-2;
     int orientation = 0;
+    int activeSkin = 0;
     SnakeComponent next;
 
     public int getX() {
@@ -31,6 +32,11 @@ public abstract class SnakeComponent {
 
     public boolean isDead(int x, int y) {
         return next.isDead(x, y) || (this.x == x && this.y == y);
+    }
+
+    public void sendDeath() {
+        this.activeSkin = 1;
+        next.sendDeath();
     }
 
     public abstract int size();

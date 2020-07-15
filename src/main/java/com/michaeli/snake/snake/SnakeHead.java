@@ -1,7 +1,9 @@
-package com.michaeli.snake;
+package com.michaeli.snake.snake;
+
+import com.michaeli.snake.App;
+import com.michaeli.snake.Utility;
 
 import java.awt.Graphics2D;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class SnakeHead {
@@ -9,8 +11,12 @@ public class SnakeHead {
     int x, y;
     SnakeComponent next;
 
-    BufferedImage dead_head = Utility.getSnakeImage("snake/snake_dead.png")[0];
-    BufferedImage head = Utility.getSnakeImage("snake/snake_green.png")[0];
+    int activeSkin = 0;
+
+    BufferedImage[] skin = new BufferedImage[]{
+        Utility.getSnakeImage("snake/snake_green.png")[0],
+        Utility.getSnakeImage("snake/snake_dead.png")[0]
+    };
 
     public SnakeHead() {
         this.next = new SnakeTail();
@@ -42,10 +48,8 @@ public class SnakeHead {
     }
 
     public void paint(Graphics2D g) {
-//        g.setColor(Color.GREEN);
-//        g.fillRect(this.x*App.COMPONENT_SIZE, this.y*App.COMPONENT_SIZE, App.COMPONENT_SIZE, App.COMPONENT_SIZE);
         int angle = (orientation%2==0) ? (orientation+1)*90 : (orientation-1)*90;
-        g.drawImage(Utility.rotate(head, angle), x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+        g.drawImage(Utility.rotate(skin[activeSkin], angle), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         next.paint(g);
     }
 
@@ -63,6 +67,11 @@ public class SnakeHead {
 
     public int size() {
         return next.size() + 1;
+    }
+
+    public void sendDeath() {
+        this.activeSkin = 1;
+        next.sendDeath();
     }
 
     @Override
