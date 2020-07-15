@@ -20,11 +20,10 @@ public class Snake extends JPanel {
     ⦿ Smooth Textures
     ⦿ Snake 'Terrain' Generation Fix
     ⦾ Menu Design
-    ⦾ Settings for [Textures, Terrain Gen]
     ⦾ (Hotseat)-Multiplayer Option
     * */
 
-    public static int skin_id = 1;
+    public static int skin_id = 2;
 
     //Diverse Effect Handler
     public Effect[] effects = new Effect[]{new Effect(0, 0) {

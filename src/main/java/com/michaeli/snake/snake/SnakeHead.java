@@ -44,7 +44,9 @@ public class SnakeHead {
     }
 
     public void pushOrientation(int orientation) {
-        next.pushOrientation(this.orientation);
+        int currentOrientation = this.orientation;
+        next.pushOrientation(currentOrientation);
+        if(!(this.orientation == orientation)) next.rotSkin(this.orientation, orientation);
         this.orientation = orientation;
     }
 
