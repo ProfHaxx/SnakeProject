@@ -24,6 +24,8 @@ public class Snake extends JPanel {
     ⦾ (Hotseat)-Multiplayer Option
     * */
 
+    public static int skin_id = 1;
+
     //Diverse Effect Handler
     public Effect[] effects = new Effect[]{new Effect(0, 0) {
         @Override
@@ -169,6 +171,7 @@ public class Snake extends JPanel {
         //Clear Image
         g2d.clearRect(0, 0, App.WIDTH, App.HEIGHT);
         //Draw Background
+        Ground.paintGround(g2d);
         //Draw Grid
         if(App.GRID) {
             grid(g2d);

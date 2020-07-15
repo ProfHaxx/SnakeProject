@@ -1,14 +1,17 @@
 package com.michaeli.snake;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Obstacle {
 
-    BufferedImage wall = Utility.getImage("wall/wall_1.png");
+    BufferedImage[] wall = new BufferedImage[] {
+            Utility.getImage("wall/wall_3.png"),
+            Utility.getImage("wall/wall_1.png"),
+            Utility.getImage("wall/wall_4.png")
+    };
 
     int id, x, y;
     public Obstacle (int id, int x, int y) {
@@ -41,7 +44,9 @@ public class Obstacle {
     }
 
     public void paint(Graphics2D g) {
-        g.drawImage(wall, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+        if(Snake.skin_id > 0) {
+            g.drawImage(wall[Snake.skin_id-1], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+        }
     }
 
 }
