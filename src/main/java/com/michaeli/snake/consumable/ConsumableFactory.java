@@ -1,6 +1,7 @@
 package com.michaeli.snake.consumable;
 
 import com.michaeli.snake.App;
+import com.michaeli.snake.GameField;
 import com.michaeli.snake.util.Utility;
 
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ public class ConsumableFactory {
         } else if(rand > 0.8 && rand <= 0.9) {
             return new Consumable(3, x, y);
         } else if(rand > 0.9) {
-            return new Consumable(4, x, y);
+            //Don't spawn Shadow Orbs in Multiplayer! (Replace with Default Food)
+            return new Consumable((GameField.num_players == 1) ? 4 : 0, x, y);
         }
 
         return new Consumable(-1, -1, -1);

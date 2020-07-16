@@ -13,9 +13,11 @@ public class GameField extends JPanel {
     ArrayList<Snake> snakes = new ArrayList<>();
     ArrayList<Thread> snakeWorkers = new ArrayList<>();
 
+    public static int num_players = 1;
     public static int skin_id = 2;
 
     public GameField(int players, boolean local, int id) {
+        num_players = players;
         if(players == 1) { // Local Single Player
             snakes.add(new Snake());
         } else if (players == 2 && local) { // Local HotSeat
