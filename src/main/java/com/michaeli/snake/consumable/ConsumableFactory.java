@@ -44,7 +44,9 @@ public class ConsumableFactory {
                     Utility.sleep(1000);
                 }
                 refresh_counter = 0;
-                spawn();
+                if(food < 6) {
+                    spawn();
+                }
             }
         });
         foodWorker.start();

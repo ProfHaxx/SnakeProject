@@ -23,6 +23,13 @@ public class SnakeHead {
         this.next = new SnakeTail();
     }
 
+    public SnakeHead(int x, int y, int orientation) {
+        this.x = x;
+        this.y = y;
+        this.orientation = orientation;
+        this.next = new SnakeTail();
+    }
+
     public void setX(int x) {
         this.x = x;
     }

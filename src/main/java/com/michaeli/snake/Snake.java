@@ -51,7 +51,7 @@ public class Snake extends JPanel {
         }
     }};
 
-    public int[] effect_duration = new int[]{15, 30, 10, 10};
+    public static final int[] EFFECT_DURATION = new int[]{15, 30, 10, 10};
 
     //Effect Table
     //0: Ghost
@@ -64,6 +64,12 @@ public class Snake extends JPanel {
 
     public Snake() {
         head = new SnakeHead();
+    }
+
+    public Snake(int id) {
+        if(id == 1) {
+            head = new SnakeHead(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE, 2);
+        }
     }
 
     public void spawnSnake() {
@@ -119,7 +125,7 @@ public class Snake extends JPanel {
             if (food.getId() == 0) {
                 grow();
             } else if (food.getId() >= 1) {
-                effects[food.getId()-1].start(effect_duration[food.getId()-1]);
+                effects[food.getId()-1].start(EFFECT_DURATION[food.getId()-1]);
             }
             ConsumableFactory.eat(foodIndex);
         }
@@ -188,7 +194,7 @@ public class Snake extends JPanel {
         }
     }
 
-    boolean copying = false;
+    public boolean copying = false;
     public void nearSight(Graphics2D g) {
         BufferedImage screen = new BufferedImage(App.WIDTH, App.HEIGHT, BufferedImage.TYPE_INT_ARGB);
         copying = true;
