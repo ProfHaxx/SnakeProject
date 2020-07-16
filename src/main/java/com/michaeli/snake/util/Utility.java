@@ -1,4 +1,4 @@
-package com.michaeli.snake;
+package com.michaeli.snake.util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

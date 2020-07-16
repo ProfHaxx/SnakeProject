@@ -1,7 +1,8 @@
 package com.michaeli.snake.consumable;
 
 import com.michaeli.snake.App;
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.Snake;
+import com.michaeli.snake.util.Utility;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,11 +10,27 @@ import java.awt.image.BufferedImage;
 public class Consumable {
     int id, x, y;
 
-    BufferedImage apple = Utility.getImage("food/food_apple.png");
-    BufferedImage ghost = Utility.getImage("food/food_ghost.png");
-    BufferedImage shadow = Utility.getImage("food/shadow_orb.png");
-    BufferedImage speed_boost = Utility.getImage("food/speed_boost.png");
-    BufferedImage speed_decrease = Utility.getImage("food/speed_decrease.png");
+    BufferedImage[] apple = new BufferedImage[]{
+            Utility.getImage("food/food_mushroom.png"),
+            Utility.getImage("food/food_apple.png"),
+            Utility.getImage("food/food_fish.png")
+    };
+
+    BufferedImage[] ghost = new BufferedImage[]{
+            Utility.getImage("food/food_ghost.png")
+    };
+
+    BufferedImage[] shadow = new BufferedImage[]{
+            Utility.getImage("food/shadow_orb.png")
+    };
+
+    BufferedImage[] speed_boost = new BufferedImage[] {
+            Utility.getImage("food/speed_boost.png")
+    };
+
+    BufferedImage[] speed_decrease = new BufferedImage[]{
+            Utility.getImage("food/speed_decrease.png")
+    };
 
     public Consumable(int id, int x, int y) {
         this.id = id;
@@ -35,16 +52,18 @@ public class Consumable {
 
     //Painting with if around id
     public void paint(Graphics2D g) {
-        if(id == 0) {
-            g.drawImage(apple, x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
-        } else if(id == 1) {
-            g.drawImage(ghost, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
-        } else if(id == 2) {
-            g.drawImage(shadow, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
-        } else if(id == 3) {
-            g.drawImage(speed_boost, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
-        } else if(id == 4) {
-            g.drawImage(speed_decrease, x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+        if(Snake.skin_id > 0) {
+            if(id == 0) {
+                g.drawImage(apple[Snake.skin_id-1], x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            } else if(id == 1) {
+                g.drawImage(ghost[0], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            } else if(id == 2) {
+                g.drawImage(shadow[0], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            } else if(id == 3) {
+                g.drawImage(speed_boost[0], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            } else if(id == 4) {
+                g.drawImage(speed_decrease[0], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            }
         }
     }
 }

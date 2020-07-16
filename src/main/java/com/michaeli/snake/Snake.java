@@ -4,6 +4,7 @@ import com.michaeli.snake.consumable.Consumable;
 import com.michaeli.snake.consumable.ConsumableFactory;
 import com.michaeli.snake.consumable.Effect;
 import com.michaeli.snake.snake.SnakeHead;
+import com.michaeli.snake.util.Utility;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,9 +21,10 @@ public class Snake extends JPanel {
     ⦿ Smooth Textures
     ⦿ Snake 'Terrain' Generation Fix
     ⦾ Menu Design
-    ⦾ Settings for [Textures, Terrain Gen]
     ⦾ (Hotseat)-Multiplayer Option
     * */
+
+    public static int skin_id = 2;
 
     //Diverse Effect Handler
     public Effect[] effects = new Effect[]{new Effect(0, 0) {
@@ -169,6 +171,7 @@ public class Snake extends JPanel {
         //Clear Image
         g2d.clearRect(0, 0, App.WIDTH, App.HEIGHT);
         //Draw Background
+        Ground.paintGround(g2d);
         //Draw Grid
         if(App.GRID) {
             grid(g2d);

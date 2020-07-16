@@ -1,11 +1,9 @@
 package com.michaeli.launcher;
 
-import com.michaeli.snake.App;
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.util.Utility;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class RectangularButton extends JComponent {
