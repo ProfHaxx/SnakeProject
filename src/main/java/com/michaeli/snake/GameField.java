@@ -13,7 +13,9 @@ public class GameField extends JPanel {
     ArrayList<Snake> snakes = new ArrayList<>();
     ArrayList<Thread> snakeWorkers = new ArrayList<>();
 
-    public GameField(int players, boolean local) {
+    public static int skin_id = 2;
+
+    public GameField(int players, boolean local, int id) {
         if(players == 1) { // Local Single Player
             snakes.add(new Snake());
         } else if (players == 2 && local) { // Local HotSeat
@@ -23,6 +25,8 @@ public class GameField extends JPanel {
             //Very long TODO
             System.out.println("This function is not supported yet!");
         }
+
+        skin_id = id;
     }
 
     public void launch() {

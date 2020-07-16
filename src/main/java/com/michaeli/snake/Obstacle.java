@@ -46,8 +46,8 @@ public class Obstacle {
     }
 
     public void paint(Graphics2D g) {
-        if(Snake.skin_id > 0) {
-            g.drawImage(wall[Snake.skin_id-1], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+        if(GameField.skin_id > 0) {
+            g.drawImage(wall[GameField.skin_id-1], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         }
     }
 

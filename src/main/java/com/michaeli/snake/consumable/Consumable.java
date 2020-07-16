@@ -1,6 +1,7 @@
 package com.michaeli.snake.consumable;
 
 import com.michaeli.snake.App;
+import com.michaeli.snake.GameField;
 import com.michaeli.snake.Snake;
 import com.michaeli.snake.util.Utility;
 
@@ -52,9 +53,9 @@ public class Consumable {
 
     //Painting with if around id
     public void paint(Graphics2D g) {
-        if(Snake.skin_id > 0) {
+        if(GameField.skin_id > 0) {
             if(id == 0) {
-                g.drawImage(apple[Snake.skin_id-1], x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+                g.drawImage(apple[GameField.skin_id-1], x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
             } else if(id == 1) {
                 g.drawImage(ghost[0], x*App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
             } else if(id == 2) {

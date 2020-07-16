@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 import static com.michaeli.snake.Obstacle.obstacles;
 
-public class Snake extends JPanel {
+public class Snake {
 
     /*
     ⦿ Smooth Textures
@@ -23,8 +23,6 @@ public class Snake extends JPanel {
     ⦾ Menu Design
     ⦾ (Hotseat)-Multiplayer Option
     * */
-
-    public static int skin_id = 2;
 
     //Diverse Effect Handler
     public Effect[] effects = new Effect[]{new Effect(0, 0) {
@@ -60,30 +58,16 @@ public class Snake extends JPanel {
     public int orientation = 0; //Unit Circle: 90 deg. * orientation is snake's angle.
     public boolean dead = false;
 
-    Thread snakeWorker;
-
     public Snake() {
         head = new SnakeHead();
     }
 
     public Snake(int id) {
         if(id == 1) {
+            head = new SnakeHead(0, 0, 0);
+        } else if(id == 2) {
             head = new SnakeHead(App.WIDTH/App.COMPONENT_SIZE, App.HEIGHT/App.COMPONENT_SIZE, 2);
         }
-    }
-
-    public void spawnSnake() {
-        snakeWorker = new Thread(() -> {
-            while(!dead) {
-                Utility.sleep(App.SPEED);
-                move();
-                wrapAround();
-                checkFood();
-                checkDead();
-                repaint();
-            }
-        }, "Game Tick Worker");
-        snakeWorker.start();
     }
 
     public void setOrientation(int orientation) {
@@ -170,35 +154,11 @@ public class Snake extends JPanel {
         head.grow();
     }
 
-    @Override
-    public void paint(Graphics g) {
-        System.out.println("[DEBUG] Panel Repaint");
-        Graphics2D g2d = (Graphics2D) g;
-        //Clear Image
-        g2d.clearRect(0, 0, App.WIDTH, App.HEIGHT);
-        //Draw Background
-        Ground.paintGround(g2d);
-        //Draw Grid
-        if(App.GRID) {
-            grid(g2d);
-        }
-        //Draw Items
-        ConsumableFactory.consumables.forEach(e -> e.paint(g2d));
-        //Draw Obstacles
-        obstacles.forEach(e-> e.paint(g2d));
-        //Draw Snake
-        head.paint(g2d);
-
-        if(effects[1].active() && !copying) {
-            nearSight(g2d);
-        }
-    }
-
     public boolean copying = false;
     public void nearSight(Graphics2D g) {
         BufferedImage screen = new BufferedImage(App.WIDTH, App.HEIGHT, BufferedImage.TYPE_INT_ARGB);
         copying = true;
-        this.paint(screen.getGraphics());
+        App.field.paint(screen.getGraphics());
         copying = false;
 
         int[] pixel = {0, 0, 0, 0};
@@ -218,16 +178,6 @@ public class Snake extends JPanel {
 
     public double distToHead(int px, int py) {
         return Math.sqrt(Math.pow((head.getX()*App.COMPONENT_SIZE+10)-px,2)+Math.pow((head.getY()*App.COMPONENT_SIZE+10)-py,2));
-    }
-
-    public void grid(Graphics2D g) {
-        g.setColor(Color.BLACK);
-        for(int i = 0; i*App.COMPONENT_SIZE <= WIDTH; i++) {
-            for(int j = 0; j*App.COMPONENT_SIZE <= HEIGHT; j++) {
-                g.drawLine(i*App.COMPONENT_SIZE, 0, i*App.COMPONENT_SIZE, HEIGHT);
-                g.drawLine(0, j*App.COMPONENT_SIZE, WIDTH, j*App.COMPONENT_SIZE);
-            }
-        }
     }
 
     @Override

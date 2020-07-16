@@ -1,5 +1,6 @@
 package com.michaeli.snake.snake;
 
+import com.michaeli.snake.GameField;
 import com.michaeli.snake.Snake;
 
 import java.awt.Graphics2D;
@@ -37,7 +38,7 @@ public abstract class SnakeComponent {
     }
 
     public void sendDeath() {
-        Snake.skin_id = 0;
+        GameField.skin_id = 0;
         next.sendDeath();
     }
 
