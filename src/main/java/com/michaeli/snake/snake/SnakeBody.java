@@ -2,7 +2,7 @@ package com.michaeli.snake.snake;
 
 import com.michaeli.snake.App;
 import com.michaeli.snake.Snake;
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.util.Utility;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

@@ -1,5 +1,7 @@
 package com.michaeli.snake;
 
+import com.michaeli.snake.util.Utility;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

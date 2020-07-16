@@ -1,6 +1,6 @@
 package com.michaeli.launcher;
 
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.util.Utility;
 
 import javax.swing.*;
 import java.awt.*;

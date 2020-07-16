@@ -4,6 +4,7 @@ import com.michaeli.snake.consumable.Consumable;
 import com.michaeli.snake.consumable.ConsumableFactory;
 import com.michaeli.snake.consumable.Effect;
 import com.michaeli.snake.snake.SnakeHead;
+import com.michaeli.snake.util.Utility;
 
 import java.awt.Color;
 import java.awt.Graphics;

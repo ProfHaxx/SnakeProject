@@ -15,4 +15,8 @@ public class Settings extends JFrame {
         setVisible(true);
     }
 
+    public void addComponents() {
+
+    }
+
 }
