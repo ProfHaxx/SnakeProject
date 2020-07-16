@@ -2,7 +2,7 @@ package com.michaeli.launcher;
 
 import com.michaeli.snake.App;
 import com.michaeli.snake.Snake;
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.util.Utility;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -49,10 +49,10 @@ public class Launcher extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("[DEBUG] Play");
-                App app = new App();
-                app.setup();
-                app.addComponents();
-                app.launch();
+                game = new App();
+                game.setup();
+                game.addComponents();
+                game.launch();
             }
 
             @Override
@@ -72,6 +72,9 @@ public class Launcher extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("[DEBUG] Settings");
+                settings = new Settings();
+                settings.setUp();
+                settings.addComponents();
             }
 
             @Override

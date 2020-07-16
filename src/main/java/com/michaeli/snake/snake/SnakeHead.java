@@ -1,7 +1,8 @@
 package com.michaeli.snake.snake;
 
 import com.michaeli.snake.App;
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.Snake;
+import com.michaeli.snake.util.Utility;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -11,11 +12,11 @@ public class SnakeHead {
     int x, y;
     SnakeComponent next;
 
-    int activeSkin = 0;
-
     BufferedImage[] skin = new BufferedImage[]{
-        Utility.getSnakeImage("snake/snake_green.png")[0],
-        Utility.getSnakeImage("snake/snake_dead.png")[0]
+        Utility.getSnakeImage("snake/snake_dead.png")[0],
+            Utility.getSnakeImage("snake/snake_green.png")[0],
+            Utility.getSnakeImage("snake/snake_red.png")[0],
+            Utility.getSnakeImage("snake/snake_blue.png")[0]
     };
 
     public SnakeHead() {
@@ -43,13 +44,15 @@ public class SnakeHead {
     }
 
     public void pushOrientation(int orientation) {
-        next.pushOrientation(this.orientation);
+        int currentOrientation = this.orientation;
+        next.pushOrientation(currentOrientation);
+        if(!(this.orientation == orientation)) next.rotSkin(this.orientation, orientation);
         this.orientation = orientation;
     }
 
     public void paint(Graphics2D g) {
         int angle = (orientation%2==0) ? (orientation+1)*90 : (orientation-1)*90;
-        g.drawImage(Utility.rotate(skin[activeSkin], angle), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+        g.drawImage(Utility.rotate(skin[Snake.skin_id], angle), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         next.paint(g);
     }
 
@@ -70,7 +73,7 @@ public class SnakeHead {
     }
 
     public void sendDeath() {
-        this.activeSkin = 1;
+        Snake.skin_id = 0;
         next.sendDeath();
     }
 

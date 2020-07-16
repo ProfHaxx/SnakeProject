@@ -1,11 +1,13 @@
 package com.michaeli.snake.snake;
 
+import com.michaeli.snake.Snake;
+
 import java.awt.Graphics2D;
 
 public abstract class SnakeComponent {
     int x=-2, y=-2;
     int orientation = 0;
-    int activeSkin = 0;
+    int[] curved = new int[]{0,0};
     SnakeComponent next;
 
     public int getX() {
@@ -35,8 +37,12 @@ public abstract class SnakeComponent {
     }
 
     public void sendDeath() {
-        this.activeSkin = 1;
+        Snake.skin_id = 0;
         next.sendDeath();
+    }
+
+    public void rotSkin(int origin, int direction) {
+        curved = new int[]{origin, direction};
     }
 
     public abstract int size();

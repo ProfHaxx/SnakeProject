@@ -1,8 +1,7 @@
 package com.michaeli.snake.consumable;
 
 import com.michaeli.snake.App;
-import com.michaeli.snake.Utility;
-import com.michaeli.snake.consumable.Consumable;
+import com.michaeli.snake.util.Utility;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,7 +1,7 @@
 package com.michaeli.snake.consumable;
 
 import com.michaeli.snake.App;
-import com.michaeli.snake.Utility;
+import com.michaeli.snake.util.Utility;
 
 public abstract class Effect {
     int id; 
