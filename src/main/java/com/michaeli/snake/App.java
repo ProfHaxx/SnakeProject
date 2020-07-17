@@ -42,13 +42,13 @@ public class App extends JFrame {
         setTitle("Snake");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
     }
 
     //Components (Adding Window Components to the Window)
     public void addComponents() {
-        field = new GameField(1, true, 3);
+        field = new GameField(1, true, 1);
         adapter = new KeyAdapter();
 
         add(field);

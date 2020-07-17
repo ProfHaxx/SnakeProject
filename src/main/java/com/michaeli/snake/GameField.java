@@ -14,7 +14,7 @@ public class GameField extends JPanel {
     ArrayList<Thread> snakeWorkers = new ArrayList<>();
 
     public static int num_players = 1;
-    public static int skin_id = 2;
+    public static int skin_id = 1;
 
     public GameField(int players, boolean local, int id) {
         num_players = players;

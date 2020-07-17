@@ -63,4 +63,23 @@ public class Utility {
 
         return rotated;
     }
+
+    /**
+     * Image Scaling Method
+     *
+     * @param sbi image to scale
+     * @param dWidth width of destination image
+     * @param dHeight height of destination image
+     * @return scaled image
+     */
+    public static BufferedImage scale(BufferedImage sbi, int dWidth, int dHeight) {
+        BufferedImage scaledImage = null;
+        if (sbi != null) {
+            scaledImage = new BufferedImage(dWidth, dHeight, sbi.getType());
+            Graphics2D graphics2D = scaledImage.createGraphics();
+            graphics2D.drawImage(sbi, 0, 0, dWidth, dHeight, null);
+            graphics2D.dispose();
+        }
+        return scaledImage;
+    }
 }

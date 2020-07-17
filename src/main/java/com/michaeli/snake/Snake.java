@@ -168,7 +168,7 @@ public class Snake {
             for(int j = 0; j < screen.getWidth(); j++) {
                 screen.getRaster().getPixel(j, i, pixel);
                 Color.RGBtoHSB(pixel[0], pixel[1], pixel[2], hsbvals);
-                float brightness = (float) (1.0/(Math.pow((distToHead(j, i)+1)/10.0, 1.25)));
+                float brightness = (float) (1.0/(Math.pow((distToHead(j, i)+1)/10.0, 1)));
                 Color adjusted = new Color(Color.HSBtoRGB(hsbvals[0], hsbvals[1], hsbvals[2] * brightness));
                 screen.getRaster().setPixel(j, i, new int[]{adjusted.getRed(), adjusted.getGreen(), adjusted.getBlue(), pixel[3]});
             }
