@@ -2,9 +2,7 @@ package com.michaeli.snake;
 
 import com.michaeli.snake.consumable.ConsumableFactory;
 
-import javax.swing.JFrame;
-
-import static com.michaeli.launcher.Launcher.snake;
+import javax.swing.*;
 
 public class App extends JFrame {
 
@@ -48,7 +46,7 @@ public class App extends JFrame {
 
     //Components (Adding Window Components to the Window)
     public void addComponents() {
-        field = new GameField(1, true, 1);
+        field = new GameField(2, true, 3);
         adapter = new KeyAdapter();
 
         add(field);
