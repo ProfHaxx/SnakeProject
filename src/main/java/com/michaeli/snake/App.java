@@ -46,7 +46,7 @@ public class App extends JFrame {
 
     //Components (Adding Window Components to the Window)
     public void addComponents() {
-        field = new GameField(2, true, 3);
+        field = new GameField(1, true, 3);
         adapter = new KeyAdapter();
 
         add(field);

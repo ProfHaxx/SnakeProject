@@ -39,13 +39,13 @@ public class Snake {
         @Override
         public void tick() {
             System.out.println("[DEBUG/Effect] Speed Boost active!");
-            App.SPEED *= 1.001;
+            App.SPEED *= 0.999;
         }
     }, new Effect(3, 0) {
         @Override
         public void tick() {
             System.out.println("[DEBUG/Effect] Speed Decrease active!");
-            App.SPEED *= 0.999;
+            App.SPEED *= 1.001;
         }
     }};
 
