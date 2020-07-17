@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class RectangularButton extends JComponent {
+    ButtonOverlay overlay;
     BufferedImage content;
     int x, y;
     int fX, fY;
@@ -25,6 +26,10 @@ public class RectangularButton extends JComponent {
         setBounds(fX, fY, fX+content.getWidth(), fY+content.getHeight());
     }
 
+    public void addButtonOverlay(BufferedImage img) {
+        this.overlay = new ButtonOverlay(img, this);
+    }
+
     public void horizontalFlyIn() {
         fX = -content.getWidth();
         new Thread(() -> {
@@ -38,9 +43,15 @@ public class RectangularButton extends JComponent {
         }, "Button Animation Thread").start();
     }
 
+    public void changeImage(BufferedImage content) {
+        this.content = content;
+        setBounds(fX, fY, fX+content.getWidth(), fY+content.getHeight());
+    }
+
     @Override
     public void paint(Graphics g) {
         g.drawImage(content, fX, fY, null);
+        if(this.overlay != null) this.overlay.paint((Graphics2D) g);
     }
 
     @Override

@@ -31,10 +31,9 @@ public class Utility {
         BufferedImage[] snake = new BufferedImage[4];
         try {
             BufferedImage fullSnake = ImageIO.read(new File(Objects.requireNonNull(Utility.class.getClassLoader().getResource(path)).getFile()));
-            snake[0] = fullSnake.getSubimage(0, 0, 20, 20);
-            snake[1] = fullSnake.getSubimage(20, 0, 20, 20);
-            snake[2] = fullSnake.getSubimage(40, 0, 20, 20);
-            snake[3] = fullSnake.getSubimage(60, 0, 20, 20);
+            for(int i = 0; i < 4; i++) {
+                snake[i] = fullSnake.getSubimage(i*20, 0, 20, 20);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,5 +62,24 @@ public class Utility {
         g2d.dispose();
 
         return rotated;
+    }
+
+    /**
+     * Image Scaling Method
+     *
+     * @param sbi image to scale
+     * @param dWidth width of destination image
+     * @param dHeight height of destination image
+     * @return scaled image
+     */
+    public static BufferedImage scale(BufferedImage sbi, int dWidth, int dHeight) {
+        BufferedImage scaledImage = null;
+        if (sbi != null) {
+            scaledImage = new BufferedImage(dWidth, dHeight, sbi.getType());
+            Graphics2D graphics2D = scaledImage.createGraphics();
+            graphics2D.drawImage(sbi, 0, 0, dWidth, dHeight, null);
+            graphics2D.dispose();
+        }
+        return scaledImage;
     }
 }

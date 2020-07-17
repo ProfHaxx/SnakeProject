@@ -4,13 +4,15 @@ import com.michaeli.snake.consumable.ConsumableFactory;
 
 import javax.swing.JFrame;
 
+import static com.michaeli.launcher.Launcher.snake;
+
 public class App extends JFrame {
 
     //Initialization
 
     //Constants
     public static App app;
-    public static Snake snake;
+    public static GameField field;
     public static KeyAdapter adapter;
 
     public static final int HEIGHT = 400;
@@ -32,7 +34,7 @@ public class App extends JFrame {
     }
 
     public static void debug() {
-        System.out.println(snake.toString());
+        field.snakes.forEach(System.out::println);
     }
 
     //Setup Functions
@@ -40,16 +42,16 @@ public class App extends JFrame {
         setTitle("Snake");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
     }
 
     //Components (Adding Window Components to the Window)
     public void addComponents() {
-        snake = new Snake();
+        field = new GameField(1, true, 1);
         adapter = new KeyAdapter();
 
-        add(snake);
+        add(field);
         addKeyListener(adapter);
     }
 
@@ -59,7 +61,7 @@ public class App extends JFrame {
 
     //Launch (Snake Creation)
     public void launch() {
-        snake.spawnSnake();
+        field.launch();
         Ground.generateGround();
         Obstacle.spawnObstacles();
         ConsumableFactory.start();

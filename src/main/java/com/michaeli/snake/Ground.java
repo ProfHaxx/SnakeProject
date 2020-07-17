@@ -27,9 +27,9 @@ public class Ground {
         for(int i = 0; i < App.WIDTH/App.COMPONENT_SIZE; i++) {
             for(int j = 0; j < App.HEIGHT/App.COMPONENT_SIZE; j++) {
                 if(random.nextDouble() < 0.95) {
-                    tiles.add(ground[Snake.skin_id-1]);
+                    tiles.add(ground[GameField.skin_id-1]);
                 } else {
-                    tiles.add(ground_decorative[Snake.skin_id-1]);
+                    tiles.add(ground_decorative[GameField.skin_id-1]);
                 }
             }
         }

@@ -20,19 +20,31 @@ public class KeyAdapter implements KeyListener {
                 App.debug();
                 break;
             case KeyEvent.VK_A:
-                App.snake.setOrientation(2);
+                App.field.snakes.get(0).setOrientation(2);
                 break;
             case KeyEvent.VK_D:
-                App.snake.setOrientation(0);
+                App.field.snakes.get(0).setOrientation(0);
                 break;
             case KeyEvent.VK_W:
-                App.snake.setOrientation(1);
+                App.field.snakes.get(0).setOrientation(1);
                 break;
             case KeyEvent.VK_S:
-                App.snake.setOrientation(3);
+                App.field.snakes.get(0).setOrientation(3);
+                break;
+            case KeyEvent.VK_LEFT:
+                if(App.field.snakes.size() == 2) App.field.snakes.get(1).setOrientation(2);
+                break;
+            case KeyEvent.VK_RIGHT:
+                if(App.field.snakes.size() == 2) App.field.snakes.get(1).setOrientation(0);
+                break;
+            case KeyEvent.VK_UP:
+                if(App.field.snakes.size() == 2) App.field.snakes.get(1).setOrientation(1);
+                break;
+            case KeyEvent.VK_DOWN:
+                if(App.field.snakes.size() == 2) App.field.snakes.get(1).setOrientation(3);
                 break;
             case KeyEvent.VK_G:
-                App.snake.grow();
+                App.field.snakes.get(0).grow();
                 break;
             case KeyEvent.VK_F2:
                 Launcher.game.screenshot();

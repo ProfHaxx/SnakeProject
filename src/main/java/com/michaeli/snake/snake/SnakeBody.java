@@ -1,6 +1,7 @@
 package com.michaeli.snake.snake;
 
 import com.michaeli.snake.App;
+import com.michaeli.snake.GameField;
 import com.michaeli.snake.Snake;
 import com.michaeli.snake.util.Utility;
 
@@ -27,7 +28,7 @@ public class SnakeBody extends SnakeComponent {
     public void paint(Graphics2D g) {
         if(curved[0] == curved[1]) {
             int angle = (orientation%2==0) ? (orientation+1)*90 : (orientation-1)*90;
-            g.drawImage(Utility.rotate(skin[Snake.skin_id], angle), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            g.drawImage(Utility.rotate(skin[GameField.skin_id], angle), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         } else {
             int factor = 0;
             if(curved[0] == 0) {
@@ -39,7 +40,7 @@ public class SnakeBody extends SnakeComponent {
             } else {
                 factor = (curved[1] == 0) ? 3 : 2;
             }
-            g.drawImage(Utility.rotate(curve_skin[Snake.skin_id], factor*90), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
+            g.drawImage(Utility.rotate(curve_skin[GameField.skin_id], factor*90), x* App.COMPONENT_SIZE, y*App.COMPONENT_SIZE, null);
         }
         next.paint(g);
     }
