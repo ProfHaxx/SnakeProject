@@ -32,6 +32,7 @@ public class GameField extends JPanel {
     }
 
     public void launch() {
+        obstacles.clear();
         snakes.forEach(snake -> snakeWorkers.add(new Thread(() -> {
             while(!snake.dead) {
                 Utility.sleep(App.SPEED);
