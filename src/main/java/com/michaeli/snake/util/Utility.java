@@ -28,10 +28,10 @@ public class Utility {
     }
 
     public static BufferedImage[] getSnakeImage(String path) {
-        BufferedImage[] snake = new BufferedImage[4];
+        BufferedImage[] snake = new BufferedImage[6];
         try {
             BufferedImage fullSnake = ImageIO.read(new File(Objects.requireNonNull(Utility.class.getClassLoader().getResource(path)).getFile()));
-            for(int i = 0; i < 4; i++) {
+            for(int i = 0; i < 6; i++) {
                 snake[i] = fullSnake.getSubimage(i*20, 0, 20, 20);
             }
         } catch (IOException e) {
