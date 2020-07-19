@@ -17,7 +17,7 @@ public class App extends JFrame {
     public static final int WIDTH = 640; // für Snake ist eine Längeneinheit 20
 
     public static final int COMPONENT_SIZE = 20;
-    public static int SPEED = 500; // 1000 => 1 'tick' => 1 Second = 1000 Milliseconds
+    public static int SPEED = 250; // 1000 => 1 'tick' => 1 Second = 1000 Milliseconds
 
     //Debug Options
     public static final boolean GRID = true;
