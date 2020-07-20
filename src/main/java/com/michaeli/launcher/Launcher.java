@@ -16,7 +16,7 @@ public class Launcher extends JFrame {
 
     public static Snake snake;
 
-    public static final int WIDTH = 640;
+    public static final int WIDTH = 680;
     public static final int HEIGHT = 500;
 
     RectangularButton play_btn;

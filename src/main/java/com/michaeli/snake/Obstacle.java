@@ -36,7 +36,7 @@ public class Obstacle {
 
     public static void spawnObstacles() {
         obstacles.clear();
-        for(int i = 0; i < (App.WIDTH+App.HEIGHT)/10; i ++) {
+        for(int i = 0; i < 100; i ++) {
             obstacles.add(generate(1,App.WIDTH / App.COMPONENT_SIZE, App.HEIGHT / App.COMPONENT_SIZE));
         }
     }

@@ -13,10 +13,10 @@ public class App extends JFrame {
     public static GameField field;
     public static KeyAdapter adapter;
 
-    public static final int HEIGHT = 400;
-    public static final int WIDTH = 640; // für Snake ist eine Längeneinheit 20
+    public static final int HEIGHT = 800;
+    public static final int WIDTH = 1280; // für Snake ist eine Längeneinheit 20
 
-    public static final int COMPONENT_SIZE = 20;
+    public static final int COMPONENT_SIZE = 40;
     public static int SPEED = 250; // 1000 => 1 'tick' => 1 Second = 1000 Milliseconds
 
     //Debug Options

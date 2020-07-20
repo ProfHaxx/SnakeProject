@@ -32,7 +32,7 @@ public class Utility {
         try {
             BufferedImage fullSnake = ImageIO.read(new File(Objects.requireNonNull(Utility.class.getClassLoader().getResource(path)).getFile()));
             for(int i = 0; i < 6; i++) {
-                snake[i] = fullSnake.getSubimage(i*20, 0, 20, 20);
+                snake[i] = fullSnake.getSubimage(i*40, 0, 40, 40);
             }
         } catch (IOException e) {
             e.printStackTrace();
