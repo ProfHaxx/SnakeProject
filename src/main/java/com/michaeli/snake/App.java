@@ -13,6 +13,8 @@ public class App extends JFrame {
     public static GameField field;
     public static KeyAdapter adapter;
 
+    public static int theme_index = 0;
+
     public static final int HEIGHT = 800;
     public static final int WIDTH = 1280; // für Snake ist eine Längeneinheit 20
 
@@ -46,7 +48,7 @@ public class App extends JFrame {
 
     //Components (Adding Window Components to the Window)
     public void addComponents() {
-        field = new GameField(1, true, 3);
+        field = new GameField(1, true, theme_index+1);
         adapter = new KeyAdapter();
 
         add(field);

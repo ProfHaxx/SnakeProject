@@ -1,5 +1,6 @@
 package com.michaeli.launcher;
 
+import com.michaeli.snake.App;
 import com.michaeli.snake.util.Utility;
 
 import javax.swing.*;
@@ -78,6 +79,7 @@ public class Settings extends JFrame {
                 System.out.println("Theme " + index + " Selected");
                 for(RectangularButton btn:themes) btn.setVisible(false);
                 for(RectangularButton btn:menu) btn.setVisible(true);
+                App.theme_index = index;
             }
 
             @Override
